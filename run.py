@@ -697,21 +697,15 @@ def main():
     if args.do_eval:
         # Put the model in evaluation mode--the dropout layers behave
         # differently during evaluation.
-        import time
         model.eval()
-        start = time.time()
         # Load test data.
         dp = DataProcessor(lang=args.lang, data_dir=args.data_dir, max_stmts=args.max_stmts)
         logger.info('Loading evaluation data.')
 #        test_examples = dp.get_val_examples()
-        dl_start = time.time()
         test_examples = dp.get_test_examples()
 #        test_dataloader = make_dataloader(args, test_examples, tokenizer, args.lang, 'val')
         test_dataloader = make_dataloader(args, test_examples, tokenizer, args.lang, 'test')
-        dl_end = time.time()
-        print(f'Time for loading data: {dl_end - dl_start}')
 
-        start_time = time.time()
         stats = evaluate(test_dataloader, model, args)
         print("  Test loss: {0:.4f}".format(stats['Epoch evaluation loss']))
         print("  CFG Accuracy: {0:.4f}".format(stats['cfg']['Accuracy']))
@@ -728,11 +722,6 @@ def main():
         print("  Overall Precision: {0:.4f}".format(stats['Overall']['Precision']))
         print("  Overall Recall: {0:.4f}".format(stats['Overall']['Recall']))
         print("  Overall F1-Score: {0:.4f}".format(stats['Overall']['F1-Score']))
-        end_time = time.time()
-        print(f"  Average time for predictions: {(end_time - start_time)/(len(test_dataloader) * args.eval_batch_size)}")
-        end = time.time()
-        print(f'Total number of examples: {len(test_dataloader)}')
-        print(f'Total time: {end - start}') 
 
     if args.do_eval_top_k:
         # Put the model in evaluation mode--the dropout layers behave
