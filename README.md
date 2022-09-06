@@ -78,6 +78,58 @@ Options:
 ``` 
 
 ### Sample Run Command:
+1. Training
 ```bash
 $ python run.py --data_dir ./datasets/ --output_dir ./outputs/intrinsic/java_8 --lang java --do_train --use_stmt_types --max_stmts 8 --expt_name intrinsic-java-8
 ```
+
+2. Inference
+```bash
+$ python run.py --data_dir ./datasets/ --output_dir ./no_output --lang java --do_eval --use_stmt_types --max_stmts 8 --load_model_path ./outputs/intrinsic/java_8/Epoch_4/model.ckpt
+```
+
+3. Make Predictions
+```bash
+$ python run.py --lang java --do_predict --use_stmt_types --max_stmts 8 --load_model_path ./outputs/intrinsic/java_8/Epoch_4/model.ckpt
+```
+
+### What does DeepPDA learn? A Case Study.
+In the following figure, CFG/PDG predictions for the attached Java program are illustrated for three variants of our model: (a) DeepPDA, (b) DeepPDA w/o Intra-Statement Context Learning, (c) DeepPDA w/o Inter-Statement Context Learning.
+
+<p align="center">
+<img width="450" height="500" src="https://github.com/deeppda-icse23/DeepPDA/blob/main/figures/example.jpg">
+</p>
+
+Next, find attached the attention maps on the different attention heads (1 -> 4) on different layers (1 -> 6) of the Transformer encoder in the Inter-Statement Context Learning component.
+
+Layer 1, Attention Heads 1 -> 4
+<p align="center">
+<img width="600" height="300" src="https://github.com/deeppda-icse23/DeepPDA/blob/main/figures/maps/L1_H1-4.png">
+</p>
+
+Layer 2, Attention Heads 1 -> 4
+<p align="center">
+<img width="600" height="300" src="https://github.com/deeppda-icse23/DeepPDA/blob/main/figures/maps/L2_H1-4.png">
+</p>
+
+Layer 3, Attention Heads 1 -> 4
+<p align="center">
+<img width="600" height="300" src="https://github.com/deeppda-icse23/DeepPDA/blob/main/figures/maps/L3_H1-4.png">
+</p>
+
+Layer 4, Attention Heads 1 -> 4
+<p align="center">
+<img width="600" height="300" src="https://github.com/deeppda-icse23/DeepPDA/blob/main/figures/maps/L4_H1-4.png">
+</p>
+
+Layer 5, Attention Heads 1 -> 4
+<p align="center">
+<img width="600" height="300" src="https://github.com/deeppda-icse23/DeepPDA/blob/main/figures/maps/L5_H1-4.png">
+</p>
+
+Layer 6, Attention Heads 1 -> 4
+<p align="center">
+<img width="600" height="300" src="https://github.com/deeppda-icse23/DeepPDA/blob/main/figures/maps/L6_H1-4.png">
+</p>
+
+
