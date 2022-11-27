@@ -1,0 +1,29 @@
+name: deeppda
+
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+  - pytorch
+
+dependencies:
+  # Core stack
+  - python
+  - pytorch-gpu
+
+  # CUDA stack
+#  - cudnn==8.2.1
+#  - cudatoolkit==11.3.1
+
+  # Visualization stack
+  - matplotlib
+  - jupyter
+  - networkx
+  - pyvis
+
+  - pip
+  - pip:
+     - tqdm
+     - transformers
+     - scikit-learn
+     - gensim
