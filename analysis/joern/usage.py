@@ -189,9 +189,6 @@ def generate_prolog(code):
 
 
 def split_trees(tree):
-    """
-    joern 生成的 AST、PDG 等融合在一块，这个 function 把它们分开。
-    """
     res = {}
     tree_type = ""
     tree_body = ""
